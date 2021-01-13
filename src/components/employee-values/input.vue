@@ -76,7 +76,7 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "Input-Value",
-  props: ["criteria", "creator", "group", "periode"],
+  props: ["criteria", "creator", "group", "periodeFrom", "periodeTo"],
   data() {
     return {
       toggleModal: false,
@@ -108,7 +108,8 @@ export default {
           group: this.group,
           name: this.criteria.name,
           score: Number(this.score),
-          periode: this.periode
+          periodeFrom: this.periodeFrom,
+          periodeTo: this.periodeTo
         }
       };
       if (this.jobValues.createdBy === this.userId) {

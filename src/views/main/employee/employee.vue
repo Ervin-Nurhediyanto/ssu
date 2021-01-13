@@ -27,7 +27,7 @@
             {{ employee.total }}
           </td>
           <td class="text-center p-2 border-2 border-gray-400">
-            Rp.{{ employee.salary }}
+            {{ salary(employee.salary) }}
           </td>
           <td class="text-center p-2 border-2 border-gray-400">
             <Create :id="employee._id" />
@@ -103,7 +103,39 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["getEmployees", "getLocations", "getLinks"])
+    ...mapActions(["getEmployees", "getLocations", "getLinks"]),
+    salary(salary) {
+      let rupiah = "";
+      const salaryRp = salary.toString().split(".");
+      const angkarev = salaryRp[0]
+        .toString()
+        .split("")
+        .reverse()
+        .join("");
+      for (let i = 0; i < angkarev.length; i++) {
+        if (i % 3 === 0) {
+          rupiah += angkarev.substr(i, 3) + ".";
+        }
+      }
+      if (salaryRp[1]) {
+        rupiah =
+          rupiah
+            .split("", rupiah.length - 1)
+            .reverse()
+            .join("") +
+          "." +
+          salaryRp[1];
+      } else {
+        rupiah =
+          rupiah
+            .split("", rupiah.length - 1)
+            .reverse()
+            .join("") +
+          "." +
+          "00";
+      }
+      return rupiah;
+    }
   }
 };
 </script>

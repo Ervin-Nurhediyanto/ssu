@@ -154,7 +154,8 @@ export default {
       "detailValue",
       "deleteValue",
       "updateValue",
-      "cancel"
+      "cancel",
+      "updateEmployee"
     ]),
     save() {
       let nulls = 0;
@@ -185,7 +186,26 @@ export default {
             periodeTo: this.periodeTo
           }
         };
-        this.updateLink(payload).then(() => {
+        this.updateLink(payload).then(res => {
+          let newSalary = res.data.updated.salary.split(".").reverse();
+          let coma = newSalary[0];
+          let salaryArr = [];
+          for (let i = 0; i < newSalary.length; i++) {
+            if (i > 0) {
+              salaryArr.push(newSalary[i]);
+            }
+          }
+          newSalary = salaryArr.reverse().join("") + "." + coma;
+
+          const payloadEmploye = {
+            id: res.data.updated.idEmployee,
+            data: {
+              total: res.data.updated.total,
+              salary: newSalary
+            }
+          };
+          this.updateEmployee(payloadEmploye);
+
           this.periodeFrom = "";
           this.periodeTo = "";
           this.creator = "";

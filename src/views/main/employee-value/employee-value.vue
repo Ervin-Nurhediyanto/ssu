@@ -66,7 +66,8 @@
               :criteria="criteria"
               :creator="creator"
               :group="group.group"
-              :periode="periode"
+              :periodeFrom="periodeFrom"
+              :periodeTo="periodeTo"
             />
           </td>
         </tr>
@@ -156,7 +157,8 @@ export default {
       "updateValue",
       "cancel",
       "removeSubTitle",
-      "removeValueId"
+      "removeValueId",
+      "updateEmployee"
     ]),
     handleCancle() {
       this.cancel("valueId").then(() => {
@@ -196,7 +198,25 @@ export default {
         };
 
         if (this.jobValues.createdBy === this.userId) {
-          this.updateValue(payload).then(() => {
+          this.updateValue(payload).then(res => {
+            let newSalary = res.data.updated.salary.split(".").reverse();
+            let coma = newSalary[0];
+            let salaryArr = [];
+            for (let i = 0; i < newSalary.length; i++) {
+              if (i > 0) {
+                salaryArr.push(newSalary[i]);
+              }
+            }
+            newSalary = salaryArr.reverse().join("") + "." + coma;
+
+            const payloadEmploye = {
+              id: res.data.updated.idEmployee,
+              data: {
+                total: res.data.updated.total,
+                salary: newSalary
+              }
+            };
+            this.updateEmployee(payloadEmploye);
             this.removeValueId();
 
             this.periodeFrom = "";

@@ -93,6 +93,22 @@ const employee = {
         localStorage.removeItem("employeeId");
         resolve();
       });
+    },
+    updateEmployee(setex, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .put(
+            process.env.VUE_APP_API_ENDPOINT + "/employees/" + payload.id,
+            payload.data
+          )
+          .then(() => {
+            resolve();
+          })
+          .catch(err => {
+            console.log(err);
+            reject(err);
+          });
+      });
     }
   }
 };
