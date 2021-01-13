@@ -147,7 +147,7 @@ export default {
         .then(() => {
           const payload = {
             idEmployee: this.id,
-            limit: 100
+            limit: Math.pow(10, 1000)
           };
           this.getLinks(payload);
         })
@@ -164,7 +164,7 @@ export default {
         .then(() => {
           const payload = {
             idEmployee: this.id,
-            limit: 100
+            limit: Math.pow(10, 1000)
           };
           this.getLinks(payload);
         })
@@ -176,7 +176,7 @@ export default {
       this.toggleModal = !this.toggleModal;
       const payload = {
         idEmployee: this.id,
-        limit: 100
+        limit: Math.pow(10, 1000)
       };
       this.getLinks(payload);
     },

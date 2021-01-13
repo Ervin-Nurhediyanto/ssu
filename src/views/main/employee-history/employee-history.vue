@@ -6,7 +6,7 @@
     <div class="my-3 w-full h-80 bg-white text-center">
       <Chart />
     </div>
-    <div>
+    <div class="overflow-scroll">
       <table class="border-2 border-b-0 border-gray-400 w-full bg-white">
         <tr class="border-2 border-gray-400 bg-gray-300">
           <th class="p-2 border-2 border-gray-400 w-20">No</th>
@@ -128,3 +128,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+.overflow-scroll::-webkit-scrollbar {
+  display: none;
+}
+</style>
