@@ -4,10 +4,10 @@
     @click="toggleModal = !toggleModal"
     class="my-2 mx-auto cursor-pointer text-blue-400 hover:text-red-400"
   >
-    ( Detail )
+    (Detail)
   </div>
   <div v-else class="my-2 mx-auto text-red-400">
-    ( Null )
+    (Null)
   </div>
   <div
     v-if="toggleModal"

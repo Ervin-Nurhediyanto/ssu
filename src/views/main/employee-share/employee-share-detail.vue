@@ -14,19 +14,25 @@
 
       <div class="flex flex-row my-2">
         <label for="periode" class="my-auto w-40">Salary Period</label>
-        <input
-          readonly
-          type="text"
-          class="border-2 border-black rounded-md my-auto ml-2 px-2 w-40"
-          :value="linkValue.periodeFrom"
-        />
-        <span class="ml-2">~</span>
-        <input
-          readonly
-          type="text"
-          class="border-2 border-black rounded-md my-auto ml-2 px-2 w-40"
-          :value="linkValue.periodeTo"
-        />
+        <div class="sm:flex sm:flex-col md:flex md:flex-row ">
+          <div>
+            <input
+              readonly
+              type="text"
+              class="border-2 border-black rounded-md my-auto ml-2 px-2 w-40"
+              :value="linkValue.periodeFrom"
+            />
+          </div>
+          <span class="ml-2">~</span>
+          <div>
+            <input
+              readonly
+              type="text"
+              class="border-2 border-black rounded-md my-auto ml-2 px-2 w-40"
+              :value="linkValue.periodeTo"
+            />
+          </div>
+        </div>
       </div>
 
       <div class="flex flex-row my-2">
