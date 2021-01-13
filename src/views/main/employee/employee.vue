@@ -27,7 +27,7 @@
             {{ employee.total }}
           </td>
           <td class="text-center p-2 border-2 border-gray-400">
-            {{ salary(employee.salary) }}
+            Rp. {{ salary(employee.salary) }}
           </td>
           <td class="text-center p-2 border-2 border-gray-400">
             <Create :id="employee._id" />
