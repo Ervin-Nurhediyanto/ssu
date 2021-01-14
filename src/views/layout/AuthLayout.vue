@@ -7,7 +7,7 @@
         <Logo />
         <span
           class="w-4/5 m-auto ml-4 pb-2 font-bold font-serif text-4xl text-gray-600"
-          >SSU 1
+          >SSU
         </span>
       </div>
       <router-view />
