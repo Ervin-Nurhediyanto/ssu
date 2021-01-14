@@ -6,7 +6,9 @@ const user = {
     user: {},
     token: localStorage.getItem("token") || null,
     username: localStorage.getItem("username") || null,
-    userId: localStorage.getItem("userId") || null
+    userId: localStorage.getItem("userId") || null,
+    email: localStorage.getItem("email") || null,
+    emailVerificationCode: localStorage.getItem("emailVerificationCode") || null
   },
   getters: {
     isLogin(state) {
@@ -20,6 +22,12 @@ const user = {
     },
     userId(state) {
       return state.userId;
+    },
+    email(state) {
+      return state.email;
+    },
+    emailVerificationCode(state) {
+      return state.emailVerificationCode;
     }
   },
   mutations: {
@@ -83,6 +91,41 @@ const user = {
       return new Promise((resolve, reject) => {
         axios
           .post(process.env.VUE_APP_API_ENDPOINT + "/auth/register", payload)
+          .then(res => {
+            resolve(res);
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
+    },
+    forgotPassword(setex, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(
+            process.env.VUE_APP_API_ENDPOINT + "/users/forgot-password",
+            payload
+          )
+          .then(res => {
+            localStorage.setItem("email", res.data.data.email);
+            localStorage.setItem(
+              "emailVerificationCode",
+              res.data.data.emailVerificationCode
+            );
+            resolve(res);
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
+    },
+    resetPassword(setex, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(
+            process.env.VUE_APP_API_ENDPOINT + "/users/reset-password",
+            payload
+          )
           .then(res => {
             resolve(res);
           })

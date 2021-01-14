@@ -22,6 +22,18 @@ const routes = [
         name: "Signup",
         component: () => import("../views/auth/Signup.vue"),
         meta: { requiresVisitor: true }
+      },
+      {
+        path: "forgot-password",
+        name: "Forgot-Password",
+        component: () => import("../views/auth/ForgotPassword.vue"),
+        meta: { requiresVisitor: true }
+      },
+      {
+        path: "reset-password",
+        name: "Reset-Password",
+        component: () => import("../views/auth/ResetPassword.vue"),
+        meta: { requiresVisitor: true }
       }
     ]
   },

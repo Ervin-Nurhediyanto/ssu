@@ -45,6 +45,12 @@
         >
           i don't have an account
         </div>
+        <div
+          @click="forgot"
+          class="inline-block font-bold text-xs text-right text-red-400 hover:text-blue-900 cursor-pointer mt-4"
+        >
+          forgot password
+        </div>
       </div>
     </form>
   </div>
@@ -113,6 +119,11 @@ export default {
     register() {
       this.$router.replace({
         name: "Signup"
+      });
+    },
+    forgot() {
+      this.$router.replace({
+        name: "Forgot-Password"
       });
     }
   }
