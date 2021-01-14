@@ -127,6 +127,8 @@ const user = {
             payload
           )
           .then(res => {
+            localStorage.removeItem("email");
+            localStorage.removeItem("emailVerificationCode");
             resolve(res);
           })
           .catch(err => {
