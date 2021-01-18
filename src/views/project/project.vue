@@ -43,6 +43,7 @@
       <Page />
     </div>
   </div>
+  <Notif />
 </template>
 
 <script>
@@ -54,6 +55,7 @@ import Edit from "../../components/projects/modal-update";
 import Delete from "../../components/projects/modal-delete";
 import Search from "../../components/projects/search";
 import Page from "../../components/projects/pagination";
+import Notif from "../../components/users/notification";
 
 export default {
   name: "Project",
@@ -66,7 +68,8 @@ export default {
     Edit,
     Delete,
     Search,
-    Page
+    Page,
+    Notif
   },
   mounted() {
     const payload = {

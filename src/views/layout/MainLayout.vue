@@ -51,12 +51,14 @@
     </div>
     <router-view />
   </div>
+  <Notif />
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
 import User from "../../components/users/user";
+import Notif from "../../components/users/notification";
 
 export default {
   name: "Main-Layout",
@@ -80,7 +82,8 @@ export default {
     };
   },
   components: {
-    User
+    User,
+    Notif
   },
   computed: {
     ...mapGetters({

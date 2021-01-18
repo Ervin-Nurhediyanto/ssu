@@ -4,6 +4,7 @@ import router from "../../../router/index";
 const user = {
   state: {
     user: {},
+    users: [],
     token: localStorage.getItem("token") || null,
     username: localStorage.getItem("username") || null,
     userId: localStorage.getItem("userId") || null,
@@ -19,6 +20,9 @@ const user = {
     },
     user(state) {
       return state.user;
+    },
+    users(state) {
+      return state.users;
     },
     userId(state) {
       return state.userId;
@@ -36,6 +40,9 @@ const user = {
       state.token = payload.access_token;
       state.username = payload.username;
       state.userId = payload._id;
+    },
+    setUsers(state, payload) {
+      state.users = payload;
     },
     setToken(state, payload) {
       state.token = payload;
@@ -132,6 +139,21 @@ const user = {
             resolve(res);
           })
           .catch(err => {
+            reject(err);
+          });
+      });
+    },
+    getAllUser(setex) {
+      return new Promise((resolve, reject) => {
+        // console.log(payload)
+        axios
+          .get(process.env.VUE_APP_API_ENDPOINT + "/users")
+          .then(res => {
+            setex.commit("setUsers", res.data.data);
+            resolve(res);
+          })
+          .catch(err => {
+            console.log(err);
             reject(err);
           });
       });
