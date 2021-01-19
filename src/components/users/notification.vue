@@ -1,6 +1,76 @@
 <template>
+  <!-- Notification -->
+  <div class="w-1/5 h-0 sticky top-3 right-40 z-50">
+    <div class="flex flex-row w-1/5 cursor-pointer">
+      <icon
+        :icon="['fas', 'bell']"
+        class="text-red-500 text-2xl ml-2 mr-1"
+        @click="showNotif = !showNotif"
+      />
+      <span
+        class="text-red-400 text-xl font-bold"
+        @click="showNotif = !showNotif"
+      >
+        ({{ newMessage.length }})
+      </span>
+    </div>
+
+    <div class="">
+      <div>
+        <div
+          v-if="showNotif"
+          @click="showUsers = !showUsers"
+          class="p-1 border-b-2 border-gray-500 bg-gray-400 cursor-pointer hover:bg-blue-300"
+        >
+          Contact
+          <span class="text-red-400 font-bold">
+            ({{ newMessage.length }})
+          </span>
+        </div>
+        <!-- List User -->
+        <div v-if="showNotif && showUsers">
+          <div
+            v-for="(user, indexUser) in users"
+            :key="indexUser"
+            class="bg-white hover:bg-blue-200 cursor-pointer"
+          >
+            <div
+              @click.prevent="chat(user)"
+              v-if="user._id !== userId"
+              class="p-1 flex flex-row justify-between"
+            >
+              {{ user.username }}
+              <span
+                v-if="
+                  userMessages[
+                    userMessages.findIndex(i => i.userId === user._id)
+                  ].messages.length > 0
+                "
+                class="text-red-500 font-bold"
+              >
+                {{
+                  userMessages[
+                    userMessages.findIndex(i => i.userId === user._id)
+                  ].messages.length
+                }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div
+        v-if="showNotif"
+        @click="showGroups = !showGroups"
+        class="p-1 border-b-2 border-gray-500 bg-gray-400 cursor-pointer hover:bg-blue-300"
+      >
+        Group
+      </div> -->
+      </div>
+    </div>
+  </div>
+
   <!-- Private Chats -->
-  <div class="w-screen h-2/5 absolute bottom-1 flex flex-row">
+  <div class="w-screen h-full sticky top-10 ml-40 flex flex-row z-50">
     <div
       v-for="(user, indexUser) in userChats"
       :key="indexUser"
@@ -8,7 +78,7 @@
     >
       <div
         v-if="user._id !== userId"
-        class="w-60 h-10 mx-1 border-2 border-black flex flex-row"
+        class="w-60 h-10 mx-1 border-2 border-black flex flex-row bg-gray-200"
       >
         <div class="bg-gray-200 p-1">{{ user.username }}</div>
         <button
@@ -58,61 +128,6 @@
           v-on:keyup.enter="send(user._id)"
         />
       </div>
-    </div>
-  </div>
-
-  <!-- Notification -->
-  <div class="border-2 border-black w-1/5 absolute bottom-1 right-1">
-    <div>
-      <div
-        v-if="showNotif"
-        @click="showUsers = !showUsers"
-        class="p-1 border-b-2 border-gray-500 bg-gray-400 cursor-pointer hover:bg-blue-300"
-      >
-        Contact
-        <span class="text-red-400 font-bold"> ({{ newMessage.length }}) </span>
-      </div>
-      <!-- List User -->
-      <div v-if="showNotif && showUsers">
-        <div
-          v-for="(user, indexUser) in users"
-          :key="indexUser"
-          class="hover:bg-blue-200 cursor-pointer"
-        >
-          <div
-            @click.prevent="chat(user)"
-            v-if="user._id !== userId"
-            class="p-1 flex flex-row justify-between"
-          >
-            {{ user.username }}
-            <span
-              v-if="
-                userMessages[userMessages.findIndex(i => i.userId === user._id)]
-                  .messages.length > 0
-              "
-              class="text-red-500 font-bold"
-            >
-              {{
-                userMessages[userMessages.findIndex(i => i.userId === user._id)]
-                  .messages.length
-              }}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- <div
-        v-if="showNotif"
-        @click="showGroups = !showGroups"
-        class="p-1 border-b-2 border-gray-500 bg-gray-400 cursor-pointer hover:bg-blue-300"
-      >
-        Group
-      </div> -->
-    </div>
-
-    <div class="cursor-pointer bg-gray-300 p-1" @click="showNotif = !showNotif">
-      Notifications
-      <span class="text-red-400 font-bold"> ({{ newMessage.length }}) </span>
     </div>
   </div>
 </template>

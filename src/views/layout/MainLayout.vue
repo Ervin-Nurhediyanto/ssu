@@ -1,7 +1,11 @@
 <template>
   <div class="ml-4">
-    <div class="ml-auto mr-2">
-      <User />
+    <Notif />
+    <div class="flex flex-row">
+      <!-- <Notif /> -->
+      <div class="ml-auto mr-2">
+        <User />
+      </div>
     </div>
     <div class="bg-white text-blue-400 h-10 w-sreen mr-5 p-2">
       <span
@@ -51,7 +55,6 @@
     </div>
     <router-view />
   </div>
-  <Notif />
 </template>
 
 <script>

@@ -11,13 +11,14 @@ import {
   faTrash,
   faPen,
   faShareAlt,
-  faHistory
+  faHistory,
+  faBell
 } from "@fortawesome/free-solid-svg-icons";
 import VueApexCharts from "vue3-apexcharts";
 import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
-library.add(faPlus, faPen, faTrash, faShareAlt, faHistory);
+library.add(faPlus, faPen, faTrash, faShareAlt, faHistory, faBell);
 
 createApp(App)
   .component("icon", FontAwesomeIcon)

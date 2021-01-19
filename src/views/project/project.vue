@@ -1,6 +1,7 @@
 <template>
   <div class="ml-4">
-    <div class="ml-auto mr-2">
+    <div class="ml-auto mr-2 flex flex-row">
+      <Notif />
       <User />
     </div>
     <div class="bg-white h-10 w-sreen mr-5 p-2">
@@ -43,7 +44,6 @@
       <Page />
     </div>
   </div>
-  <Notif />
 </template>
 
 <script>
