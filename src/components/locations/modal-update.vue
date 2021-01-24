@@ -26,10 +26,10 @@
             <div class="flex flex-row w-full mb-4">
               <label for="name" class="mr-4 my-auto w-40">Location</label>
               <input
-                v-model="locationName"
+                readonly
                 type="text"
                 class="border-2 border-black w-full rounded-sm p-1"
-                :placeholder="location.location"
+                :value="location.location"
               />
             </div>
             <div class="flex flex-row w-full mb-4">
