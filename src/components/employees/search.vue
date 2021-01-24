@@ -3,7 +3,7 @@
     v-model="search"
     type="text"
     class="border p-1 pl-2 w-full"
-    @change="handleSeacrh"
+    @input="handleSeacrh($event.srcElement.value)"
     placeholder="Search"
   />
 </template>
@@ -27,7 +27,9 @@ export default {
   },
   methods: {
     ...mapActions(["getEmployees"]),
-    handleSeacrh() {
+    handleSeacrh(e) {
+      console.log(e);
+
       const paylaod = {
         userId: this.userId,
         projectId: this.$route.params.id,
