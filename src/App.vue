@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       socket: io(process.env.VUE_APP_API_DOMAIN),
-      version: "v-1.03"
+      version: "v-1.04"
     };
   },
   mounted() {

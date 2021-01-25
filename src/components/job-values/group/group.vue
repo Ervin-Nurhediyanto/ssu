@@ -51,6 +51,7 @@
             type="text"
             v-model="group"
             placeholder="job process"
+            @keyup.enter="insert"
           />
         </div>
         <div class="flex justify-end">
@@ -122,10 +123,14 @@ export default {
             this.getJobValues(this.$route.params.id);
           })
           .catch(err => {
-            alert(data.group + " " + err.response.data.message);
+            this.$swal.fire(
+              "Failed to add group",
+              data.group + " " + err.response.data.message,
+              "error"
+            );
           });
       } else {
-        alert("Access denied");
+        this.$swal.fire("Failed to add group", "Access denied", "warning");
       }
 
       this.group = "";

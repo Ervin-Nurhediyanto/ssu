@@ -30,6 +30,7 @@
                 type="text"
                 class="border-2 border-black w-full rounded-sm p-1"
                 :placeholder="oldGroup"
+                @keyup.enter="update"
               />
             </div>
 
@@ -96,10 +97,14 @@ export default {
             this.getJobValues(this.$route.params.id);
           })
           .catch(err => {
-            alert(payload.data.group + " " + err.response.data.message);
+            this.$swal.fire(
+              "Failed to edit group",
+              payload.data.group + " " + err.response.data.message,
+              "error"
+            );
           });
       } else {
-        alert("Access denied");
+        this.$swal.fire("Failed to edit group", "Access denied", "warning");
       }
 
       this.toggleModal = false;

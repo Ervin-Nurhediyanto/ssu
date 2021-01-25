@@ -26,10 +26,10 @@
             <div class="flex flex-row w-full mb-4">
               <label for="name" class="mr-4 my-auto w-40">Level</label>
               <input
-                v-model="level"
+                readonly
+                :value="levels.level"
                 type="text"
                 class="border-2 border-black w-full rounded-sm p-1"
-                :placeholder="levels.level"
               />
             </div>
             <div class="flex flex-row w-full mb-4">
@@ -39,6 +39,7 @@
                 type="text"
                 class="border-2 border-black w-full rounded-sm p-1"
                 :placeholder="levels.description"
+                @keyup.enter="update"
               />
             </div>
             <div class="flex flex-row w-full mb-4">
@@ -48,6 +49,7 @@
                 type="text"
                 class="border-2 border-black w-full rounded-sm p-1"
                 :placeholder="levels.score"
+                @keyup.enter="update"
               />
             </div>
 
@@ -114,15 +116,21 @@ export default {
               this.getJobValues(this.$route.params.id);
             })
             .catch(err => {
-              alert(
-                "Level " + payload.data.level + " " + err.response.data.message
+              this.$swal.fire(
+                "Failed to edit level",
+                "Level " + payload.data.level + " " + err.response.data.message,
+                "error"
               );
             });
         } else {
-          alert("Level must be a number");
+          this.$swal.fire(
+            "Failed to edit level",
+            "Level must be a number",
+            "error"
+          );
         }
       } else {
-        alert("Access denied");
+        this.$swal.fire("Failed to edit level", "Access denied", "warning");
       }
 
       this.toggleModal = false;

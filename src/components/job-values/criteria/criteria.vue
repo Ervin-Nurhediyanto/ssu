@@ -50,6 +50,7 @@
             type="text"
             v-model="factor"
             placeholder="factor criteria"
+            @keyup.enter="insert"
           />
         </div>
         <div class="flex justify-end">
@@ -124,10 +125,18 @@ export default {
             this.getJobValues(this.$route.params.id);
           })
           .catch(err => {
-            alert(data.name + " " + err.response.data.message);
+            this.$swal.fire(
+              "Failed to add factor criteria",
+              data.name + " " + err.response.data.message,
+              "error"
+            );
           });
       } else {
-        alert("Access denied");
+        this.$swal.fire(
+          "Failed to add factor criteria",
+          "Access denied",
+          "warning"
+        );
       }
 
       this.factor = "";

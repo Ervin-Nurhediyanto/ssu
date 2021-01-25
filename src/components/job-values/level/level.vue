@@ -61,6 +61,7 @@
             type="text"
             v-model="level"
             placeholder=""
+            @keyup.enter="insert"
           />
         </div>
         <div class="flex justify-between p-4">
@@ -70,6 +71,7 @@
             type="text"
             v-model="description"
             placeholder=""
+            @keyup.enter="insert"
           />
         </div>
         <div class="flex justify-between p-4">
@@ -79,6 +81,7 @@
             type="text"
             v-model="score"
             placeholder=""
+            @keyup.enter="insert"
           />
         </div>
         <div class="flex justify-end">
@@ -153,7 +156,11 @@ export default {
       };
       if (this.jobValues.createdBy === this.userId) {
         if (data.score === 0) {
-          alert("score cannot be null");
+          this.$swal.fire(
+            "Failed to add level",
+            "score cannot be null",
+            "error"
+          );
         }
         if (data.level > 0 && data.score > 0) {
           this.insertLevel(data)
@@ -161,13 +168,21 @@ export default {
               this.getJobValues(this.$route.params.id);
             })
             .catch(err => {
-              alert("Level" + data.level + " " + err.response.data.message);
+              this.$swal.fire(
+                "Failed to add level",
+                "Level" + data.level + " " + err.response.data.message,
+                "error"
+              );
             });
         } else {
-          alert("Level and Score must be a number");
+          this.$swal.fire(
+            "Failed to add level",
+            "Level and Score must be a number",
+            "error"
+          );
         }
       } else {
-        alert("Access denied");
+        this.$swal.fire("Failed to add level", "Access denied", "warning");
       }
 
       this.level = "";
