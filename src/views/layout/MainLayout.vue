@@ -1,8 +1,6 @@
 <template>
   <div class="ml-4">
-    <Notif />
     <div class="flex flex-row">
-      <!-- <Notif /> -->
       <div class="ml-auto mr-2">
         <User />
       </div>
@@ -61,7 +59,6 @@
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
 import User from "../../components/users/user";
-import Notif from "../../components/users/notification";
 
 export default {
   name: "Main-Layout",
@@ -85,8 +82,7 @@ export default {
     };
   },
   components: {
-    User,
-    Notif
+    User
   },
   computed: {
     ...mapGetters({

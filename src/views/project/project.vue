@@ -1,8 +1,9 @@
 <template>
   <div class="ml-4">
-    <div class="ml-auto mr-2 flex flex-row">
-      <Notif />
-      <User />
+    <div class="flex flex-row">
+      <div class="ml-auto mr-2">
+        <User />
+      </div>
     </div>
     <div class="bg-white h-10 w-sreen mr-5 p-2">
       <span class="cursor-pointer text-blue-400 hover:text-red-400"
@@ -55,7 +56,6 @@ import Edit from "../../components/projects/modal-update";
 import Delete from "../../components/projects/modal-delete";
 import Search from "../../components/projects/search";
 import Page from "../../components/projects/pagination";
-import Notif from "../../components/users/notification";
 
 export default {
   name: "Project",
@@ -68,8 +68,7 @@ export default {
     Edit,
     Delete,
     Search,
-    Page,
-    Notif
+    Page
   },
   mounted() {
     const payload = {
